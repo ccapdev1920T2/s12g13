@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('/fonts/OpenSansRegular.ttf');
+}
+
+@font-face {
+    font-family: 'PokemonSolid';
+    src: url('/fonts/PokemonSolid.ttf')
+}
+
+body {
+    font-family: 'OpenSansRegular';
+    height:100vh;
+    min-height:550px;
+    position:relative;
+    overflow-y: hidden;
+}
+
+#title {
+    font-family: 'PokemonSolid';
+    font-size: 70px;
+    margin-bottom: -30px;
+    line-height: 70px;
+    text-align: center;
+    z-index: 500;
+}
+
+.login-reg-panel {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align:center;
+    width:70%;
+    right:0;left:0;
+    margin:auto;
+    height:400px;
+    background-color: rgba(236, 48, 20, 0.9);
+    color:#B8B8B8;
+}
+
+.white-panel {
+    background-color: rgba(255,255, 255, 1);
+    height:500px;
+    position:absolute;
+    top:-50px;
+    width:50%;
+    right:calc(50% - 50px);
+    transition:.3s ease-in-out;
+    z-index:0;
+    box-shadow: 0 0 15px 9px #00000096;
+}
+
+.login-reg-panel #label-login,
+.login-reg-panel #label-register {
+    border:1px solid #9E9E9E;
+    padding:5px 5px;
+    width:150px;
+    display:block;
+    text-align:center;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight: 600;
+    size: 18px;
+}
+
+.login-info-box {
+    padding:0 50px;
+    top:20%;
+    left:0;
+    position:absolute;
+    text-align:left;
+}
+
+.register-info-box {
+    padding:0 50px;
+    top:20%;
+    right:0;
+    position:absolute;
+    text-align:left;
+}
+
+.right-log {
+    right:50px !important;
+}
+
+.login-show, .register-show {
+    z-index: 1;
+    display:none;
+    opacity:0;
+    transition:0.3s ease-in-out;
+    color:#242424;
+    text-align:left;
+    padding:50px;
+}
+
+.show-log-panel {
+    display:block;
+    opacity:0.9;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    display: block;
+    margin:20px 0;
+    padding: 15px;
+    border: 1px solid #b5b5b5;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[data-error="true"] {
+    border: 1px solid #f44336;
+}
+
+.login-show p {
+    display:inline-block;
+    padding:10px 0;
+    text-decoration: none;
+    color:#444444;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.login-show p:hover {
+    text-decoration: underline;
+    color: #008CBA;
+}
+
+input[type="submit"] {
+    max-width: 150px;
+    width: 100%;
+    background: #4CAF50;
+    color: #f9f9f9;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    float:right;
+    cursor:pointer;
+    transition: 0.5s
+}
+
+input[type="submit"]:disabled {
+    background: #444444;
+}
+
+#blue {
+    color: #2a75bb
+}
+
+#yellow {
+    color: #ffcb05;
+}

@@ -1,0 +1,274 @@
+<link rel='stylesheet' href='/stylesheets/main.css' type='text/css'/>
+<script type='text/javascript' src='/javascripts/main.js'></script>
+
+<div id="maincontainer" class="flex-row">
+    <div id="monstercontainer" class="flex-col">
+        <div id="monsterrender" class="flex-col">
+            <div id="healthinfo" class="flex-col">
+                <div id="healthbar">
+                    <div id="healthoutline"></div>
+                    <div id="healthvar"></div>
+                </div>
+                <h3>HP: <span id="curhealth">50</span>/<span id="maxhealth">50</span></h3>
+            </div>
+            <div id="monster"></div>
+            <div id="terrain"></div>
+        </div>
+        <div id="monsterinfo">
+            <h1 id="monstername">Jeremiah Finklehorn</h1>
+            <div id="raritytype" class="flex-row textimageflex"> 
+                <h2 id="rarity">Common:</h2>
+                <h2 id="type">Paper Type</h2>
+                <div id="typeicon"></div>
+            </div>
+        </div>
+    </div>
+    <div id="menucontainer" class="flex-row">
+        <div id="menudisplay">
+            <div id="skillsmenu" class="menu flex-col">
+                <div id="playerinfo">
+                    <h1 id="playername">xX_IWantToDie_Xx</h1>
+                    <h2 id="playerlevel">Level 10</h2>
+                    <h3>EXP: <span id="curxp">49</span>/<span id="nextxp">50</span></h3>
+                </div>
+                <div id="statsinfo">
+                    <div>
+                        <h2 id="attackdamage">Attack Damage: <span class="value">0</span> <span class="rarrow">></span></h2>
+                    </div>
+                    <div>
+                        <h2 id="critchance">Critical Chance: <span class="value">0</span>% <span class="rarrow">></span></h2>
+                    </div>
+                    <div>
+                        <h2 id="critdamage">Critical Damage: <span class="value">0</span>% <span class="rarrow">></span></h2>
+                    </div>
+                    <div>
+                        <h2 id="attackspeed">Attack Speed: <span class="value">0</span> <span class="rarrow">></span></h2>
+                    </div>
+                    <h3 id="points">Skill points: <span class="value">0</span></h2>
+                </div>
+            </div>
+            <div id="itemsmenu" class="menu flex-col hidden">
+                {{!-- {{
+                <table class='inv-contain'>
+                    <tbody class='inv-items'>
+                        <tr class='inv-items'>
+                            <th class='inv-square'><div div class = 'itemsprite' id = 'rock0'></div></th>
+                            <th class='inv-square'><div div class = 'itemsprite' id = 'rock1'></div></th>
+                            <th class='inv-square'><div div class = 'itemsprite' id = 'rock2'></div></th>
+                            <th class='inv-square'><div div class = 'itemsprite' id = 'rock3'></div></th>
+                        </tr>
+                        <tr>
+                            <th><div div class = 'itemsprite' id = 'rock4'></div></th>
+                            <th><div div class = 'itemsprite' id = 'rock5'></div></th>
+                            <th><div div class = 'itemsprite' id = 'rock6'></div></th>
+                            <th><div div class = 'itemsprite' id = 'rock7'></div></th>
+                        </tr>
+                    </tbody>
+                    
+                        
+                </table>
+                }} --}}
+                <h2>Equipped Item:</h2>
+                <div id = 'equippeditem'>
+                    <div class = 'itemrow'>
+                        <div class = 'itemsprite' id = 'ms'></div>
+                        <a class = 'itemname'>Green Man Happy Fun Sword</a>
+                         <div class = 'itemclass'></div>
+                    </div>
+                </div>
+                <h2>Items:</h2>
+                <div id = 'items'>
+
+                    <div class = 'itemrow'>
+                        <div class = 'itemsprite' id = 'rock0'></div>
+                        <a class = 'itemname'>Diggy Shovel</a>
+                        <div class = 'itemclass'></div>
+                    </div>
+
+                    <div class = 'itemrow'>
+                        <div class = 'itemsprite' id = 'pball'></div>
+                        <a class = 'itemname'>Spherical Animal Prison</a>
+                         <div class = 'itemclass'></div>
+                    </div>
+
+                    <div class = 'itemrow'>
+                        <div class = 'itemsprite' id = 'sm'></div>
+                        <a class = 'itemname'>Japanese Schoolgirl Wand</a>
+                        <div class = 'itemclass'></div>
+                    </div>
+
+                    <div class = 'itemrow' >
+                        <div class = 'itemsprite'id = 'dball'></div>
+                        <a class = 'itemname'>Orange Wish Balls</a>
+                        <div class = 'itemclass'></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="leaderboardmenu" class="menu flex-col hidden">
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#1</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">BigChungis</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#2</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">DannyDeVito</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#3</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">MacedaMaster</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#4</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">MasterMaceda</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#5</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">MalphiteGOD</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#6</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">Liliana</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#7</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">Lewis</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#8</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">Robert</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#9</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">Richard</h2>
+                    </div>
+                </div>
+                <div class="flex-col leaderboard">
+                    <div class="flex-row textimageflex">
+                        <h2 class="rank">#10</h2>
+                        <h2 class="level">Level 99 -</h2>
+                        <h2 class="username">Dolores</h2>
+                    </div>
+                </div>
+            </div>
+            <div id="searchmenu" class="menu flex-col hidden">
+                <div class="flex-col search">
+                    <div style="align-content:center">
+                        <input type=text id="searchbar" style="display:inline">
+                        <input type=button id="searchbutton" class="longbutton" value="Search For Player" style="display:inline">
+                    </div>
+                    
+                    <span id="searcherror" style="color: #ff5252; font-size:10px; text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;"></span>
+                    <div id="searchresult" class="hidden">
+                        <div id="searchplayerinfo">
+                            <h1 id="searchplayername">{{uName}}</h1>
+                            <h2 id="searchplayerlevel">Level {{level}}</h2>
+                        </div>
+                        <div id="searchstatsinfo">
+                            <div>
+                                <h2 id="searchattackdamage">Attack Damage: <span class="value">200</span></h2>
+                            </div>
+                            <div>
+                                <h2 id="searchcritchance">Critical Chance: <span class="value">100</span>%</h2>
+                            </div>
+                            <div>
+                                <h2 id="searchcritdamage">Critical Damage: <span class="value">250</span>%</h2>
+                            </div>
+                            <div>
+                                <h2 id="searchattackspeed">Attack Speed: <span class="value">5.0</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="editmenu" class="menu flex-col hidden">
+                <div id = 'verifypass' class = "edit">
+                    <label for = 'password'>Password:</label></br>
+                    <input type = "password" id = 'password'>
+                    <button id = 'verifypassbutton' class = "shortbutton">Submit</button>
+                </div>
+
+                <div id = 'changeitems' class = 'edit hidden'>
+
+                    <div class = "editchoice">
+                        <p>Edit Email?</p>
+                        <button id = "editemailbutton" class = "shortbutton">Change</button>
+                    </div>
+                    <div class = "editchoice hidden" id = "editemail">
+                        <label for = 'newemail'>New Email:</label></br>
+                        <input type = "text" id = 'newemail'></br>
+                    </div>
+                    
+                     <div class = "editchoice">
+                        <p>Edit Username?</p>
+                        <button id = "edituserbutton" class = "shortbutton">Change</button>
+                    </div>
+                    <div class = "editchoice hidden" id = "edituser">
+                        <label for = 'newuser'>New Username:</label></br>
+                        <input type = "text" id = 'newuser'></br>
+                    </div>
+
+                    <div class = "editchoice">
+                        <p>Edit Password?</p>
+                        <button id = "editpassbutton" class = "shortbutton">Change</button>
+                    </div>
+                     <div class = "editchoice hidden" id = "editpass">
+                        <label for = 'newpass'>New Passowrd:</label></br>
+                        <input type = "password" id = 'newpass'>
+                     </div>
+
+                    <button id = 'changeitemsbutton' class = "shortbutton">Submit</button>
+                    <button id = 'backbutton' class = "shortbutton">Back</button>
+                </div>
+            </div>
+        </div>
+        <div id="menubar" class="flex-col">
+            <div id="skillsoption" class="menuoption flex-col selected">
+                <img src="/images/menuicons/skills.png">
+            </div>
+            <div id="itemsoption" class="menuoption flex-col">
+                <img src="/images/menuicons/items.png">
+            </div>
+            <div id="leaderboardoption" class="menuoption flex-col">
+                <img src="/images/menuicons/leaderboard.png">
+            </div>
+            <div id="searchoption" class="menuoption flex-col">
+                <img src="/images/menuicons/search.png">
+            </div>
+            <div id="editoption" class="menuoption flex-col">
+                <img src="/images/menuicons/edit.png">
+            </div>
+            <div id="logoutoption" class="menuoption flex-col">
+                <a href="/">
+                    <img src="/images/menuicons/logout.png">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

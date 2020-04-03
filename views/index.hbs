@@ -1,0 +1,44 @@
+<link rel='stylesheet' href='/stylesheets/index.css' type='text/css'/>
+<script type='text/javascript' src='/javascripts/index.js'></script>
+
+<h1 id="title"><span id="yellow">CC</span><span id="blue">TAPDEV</span></h1>
+
+<div class="login-reg-panel">
+    <div class="login-info-box">
+        <h2>Have an account?</h2>
+        <p>Log in to play CCTAPDEV!</p>
+        <label id="label-login" for="log-reg-show">Login</label>
+    </div>
+                        
+    <div class="register-info-box">
+        <h2>Don't have an account?</h2>
+        <p>Sign up to play CCTAPDEV!</p>
+        <label id="label-register" for="log-login-show">Register</label>
+    </div>
+                        
+    <div class="white-panel">
+        <div class="login-show">
+            <h2>LOGIN</h2>
+            <form id="login" method="POST">
+                <input type="text" placeholder="Username" name="email" id="loguser">
+                <input type="password" placeholder="Password" name="password" id="logpass">
+                <input type="submit" value="Login" id="logsubmit">
+            </form>
+            <p id="forgotflag">Forgot password?</p>
+            <form id="forgot" method="POST" action="/forgot">
+                <input type="text" placeholder="Email" name="email" id="forgotemail">
+                <input type="submit" value="Send" id="forgotsubmit">
+            </form>
+        </div>
+        <div class="register-show">
+            <h2>REGISTER</h2>
+            <form id="register" method="POST" action="/register">
+                <input type="text" placeholder="Email" name="email" id="regemail">
+                <input type="text" placeholder="Username" name="username" id="reguser">
+                <input type="password" placeholder="Password" name="password"  id="regpass">
+                <input type="password" placeholder="Confirm Password" name="cpassword" id="regcpass">
+                <input type="submit" value="Register"  id="regsubmit">
+            </form>
+        </div>
+    </div>
+</div>

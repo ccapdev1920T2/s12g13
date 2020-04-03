@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('/fonts/OpenSansRegular.ttf');
+}
+
+@font-face {
+    font-family: 'PokemonSolid';
+    src: url('/fonts/PokemonSolid.ttf');
+}
+
+body {
+
+    text-align: center;
+    overflow-y: hidden;
+}
+
+#confirmation {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'PokemonSolid';
+    margin-bottom: 60px;
+    font-size: 100px;
+}
+
+h2 {
+    font-family: 'OpenSansRegular';
+}
