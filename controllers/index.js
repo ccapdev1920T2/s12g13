@@ -38,6 +38,12 @@ const controller = {
         })
     },
 
+    getLeaders: function (req, res){
+        db.findMany(Player,{},{},{sort:{level:-1}, limit: 10}, function(result) {
+            res.send(result);
+        })
+    }
+
 };
 
 module.exports = controller;

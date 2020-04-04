@@ -10,6 +10,6 @@ router.post('/forgot', controller.postForgot);
 router.post('/', controller.postLogin)
 router.get('/main', controller.getMain);
 router.get('/getUser',controller.getUser);
-
+router.get('/getLeaders',controller.getLeaders);
 
 module.exports = router;

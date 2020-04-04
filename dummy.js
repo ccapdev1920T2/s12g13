@@ -14,5 +14,12 @@ player.save(function (err) {
 var player = new Player({uName: "adecam1", pw: "12345", email: "d@m1.com", level: 2});
 player.save(function (err) {
     if (err) return handleError(err);
-    else console.log('saved');
+    else console.log('saved 2');
+  });
+
+//data 3
+var player = new Player({uName: "adecam12", pw: "123456", email: "d@m2.com", level: 3, atk: 5});
+player.save(function (err) {
+    if (err) return handleError(err);
+    else console.log('saved 3');
   });

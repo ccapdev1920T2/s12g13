@@ -185,17 +185,65 @@ $(document).ready(function(){
         }
             
 		
-	});
+    });
+    
+    $('#leaderboardoption').click(function(){
+        $.get('/getLeaders',{},function(result){
+            $('#rank1 .leaderlvlval').text(result[0].level);
+            $('#rank1 .leaderunval').text(result[0].uName);
+
+            $('#rank2 .leaderlvlval').text(result[1].level);
+            $('#rank2 .leaderunval').text(result[1].uName);
+
+            $('#rank3 .leaderlvlval').text(result[2].level);
+            $('#rank3 .leaderunval').text(result[2].uName);
+
+            $('#rank4 .leaderlvlval').text(result[3].level);
+            $('#rank4 .leaderunval').text(result[3].uName);
+
+            $('#rank5 .leaderlvlval').text(result[4].level);
+            $('#rank5 .leaderunval').text(result[4].uName);
+
+            $('#rank6 .leaderlvlval').text(result[5].level);
+            $('#rank6 .leaderunval').text(result[5].uName);
+
+            $('#rank7 .leaderlvlval').text(result[6].level);
+            $('#rank7 .leaderunval').text(result[6].uName);
+            
+            $('#rank8 .leaderlvlval').text(result[7].level);
+            $('#rank8 .leaderunval').text(result[7].uName);
+
+            $('#rank9 .leaderlvlval').text(result[8].level);
+            $('#rank9 .leaderunval').text(result[8].uName);
+
+            $('#rank10 .leaderlvlval').text(result[9].level);
+            $('#rank10 .leaderunval').text(result[9].uName);  
+        })
+    })
 
     $('.leaderboard').click(function () {
         $('.selected').removeClass('selected');
         $('#searchoption').addClass('selected');
-
         $('#leaderboardmenu').addClass('hidden');
         $('#searchmenu').removeClass('hidden');
-        $('#searchresult').removeClass('hidden');
-        $('#searchplayername').text($(this).find('.username').text());
-        $('#searchbar').val($(this).find('.username').text());
+
+        let uName = $(this).find('.leaderunval').text();
+        $.get('/getUser',{uName:uName}, function(result){
+            if(result.uName = uName)
+            {
+                $('#searchresult').removeClass('hidden');
+                $('#searchplayername').text(result.uName);
+                $('#searchlvlval').text(result.level);
+                $('#searchadval').text(result.atk);
+                $('#searchasval').text(result.aspeed);
+                $('#searchccval').text(result.critchance);
+                $('#searchcdval').text(result.critdamage);
+                $('#searchbar').css("background-image","url('images/textbar.png')");
+                $('#searcherror').text("");
+            }
+        })
+        //$('#searchplayername').text($(this).find('.username').text());
+        //$('#searchbar').val($(this).find('.username').text())
     });
 
     $('#verifypassbutton').click(function(){
