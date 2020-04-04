@@ -11,7 +11,7 @@ const Consumable = require('./ConsumableModel.js');
 
 
 
-// ccapdev-mongoose is the name of the database
+// cctapdev is the name of the database
 const url = 'mongodb://localhost:27017/cctapdev';
 
 // additional connection options

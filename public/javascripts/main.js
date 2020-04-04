@@ -159,10 +159,24 @@ $(document).ready(function(){
 
 	$('#searchbutton').click(function () {
         if($('#searchbar').val() != ''){
-            $('#searchresult').removeClass('hidden');
-            $('#searchplayername').text($('#searchbar').val());
-            $('#searchbar').css("background-image","url('images/textbar.png')");
-            $('#searcherror').text("")
+            let uName = $('#searchbar').val();
+            $.get('/getUser',{uName:uName}, function(result){
+                if(result.uName = uName)
+                {
+                    $('#searchresult').removeClass('hidden');
+                    $('#searchplayername').text(result.uName);
+                    $('#searchlvlval').text(result.level);
+                    $('#searchadval').text(result.atk);
+                    $('#searchasval').text(result.aspeed);
+                    $('#searchccval').text(result.critchance);
+                    $('#searchcdval').text(result.critdamage);
+                    $('#searchbar').css("background-image","url('images/textbar.png')");
+                    $('#searcherror').text("");
+                }
+            })
+            
+
+
         }
         else
         {

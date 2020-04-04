@@ -9,5 +9,7 @@ router.post('/register', controller.postRegister);
 router.post('/forgot', controller.postForgot);
 router.post('/', controller.postLogin)
 router.get('/main', controller.getMain);
+router.get('/getUser',controller.getUser);
+
 
 module.exports = router;

@@ -1,3 +1,13 @@
+// import db and schema modules
+const db = require('../models/db.js');
+const Player = require('../models/PlayerModel.js');
+const Enemy = require('../models/EnemyModel.js');
+const Inventory = require('../models/InventoryModel.js');
+const Weapon = require('../models/WeaponModel.js');
+const Consumable = require('../models/ConsumableModel.js');
+
+
+
 const controller = {
     getIndex: function (req, res, next) {
         res.render('index');
@@ -19,6 +29,13 @@ const controller = {
     },
     getMain: function (req, res, next) {
         res.render('main');
+    },
+
+    getUser: function (req, res){
+        let uName = req.query.uName;
+        db.findOne(Player, {uName: uName}, {}, function (result) {
+            res.send(result);
+        })
     },
 
 };
