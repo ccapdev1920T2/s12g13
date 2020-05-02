@@ -10,18 +10,22 @@ var EnemySchema = new mongoose.Schema({
    
     hp: {
         type: Number,
-        min: 0
+        default: 50
     },
 
     type: {
         type: String,
-        enum: ['R','P','S'],
+        enum: ['Rock','Paper','Scissor'],
         required: true
     },
 
     expdrop:{
         type: Number,
         min: 1
+    },
+
+    src:{
+        type: String
     },
     
     weapondrops: [{

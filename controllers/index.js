@@ -42,6 +42,12 @@ const controller = {
         db.findMany(Player,{},{},{sort:{level:-1}, limit: 10}, function(result) {
             res.send(result);
         })
+    },
+
+    getMonsters: function(req, res){
+        db.findMany(Enemy,{},{},{},function(result){
+            res.send(result);
+        })
     }
 
 };

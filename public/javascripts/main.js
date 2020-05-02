@@ -2,7 +2,27 @@ $(document).ready(function(){
     var oof = new Audio('/sounds/oof.mp3');
     var click = new Audio('/sounds/click.mp3');
     var woosh = new Audio('/sounds/enderman-whoosh.mp3');
+    var monsters = [];
+    var monster;
+    var currHP;
+    var currUser;
+    $.get('/getMonsters',function(result){
+        monsters = result;
+        spawnMonster();
+    })
 
+    $.get('/getUser',{uName:"adecam"}, function(result){
+        currUser = result;
+        $('#playername').text(currUser.uName);
+        $('#playerlevel').text('Level ' + currUser.level);
+        $('#attackdamage .value').text(currUser.atk);
+        $('#critchance .value').text(currUser.critchance);
+        $('#critdamage .value').text(currUser.critdamage);
+        $('#attackspeed .value').text(currUser.aspeed);
+        setInterval(passiveDamage, 1000/currUser.aspeed);
+    })
+    
+    
     $('.menuoption').click(function () {
         $('.selected').removeClass('selected');
         $(this).addClass('selected');
@@ -42,88 +62,24 @@ $(document).ready(function(){
         }
     });
 
+    
     $('#monster').click(function () {  
         let oofCopy = oof.cloneNode();
         oofCopy.play();
-
-        let monsters = [
-        {
-            "name": "Jeremiah Finklehorn",
-            "type": "Paper",
-            "src": "/images/monsters/jeremiah.png"
-        },
-        {
-            "name": "Jamal Finklehorn",
-            "type": "Scissor",
-            "src": "/images/monsters/jamal.png"
-        },
-        {
-            "name": "Jeremy Finklehorn",
-            "type": "Scissor",
-            "src": "/images/monsters/jeremy.png"
-        },
-        {
-            "name": "J3r3-m4h Finklehorn",
-            "type": "Rock",
-            "src": "/images/monsters/j3r3-m4h.png"
-        },
-        {
-            "name": "Cement Ngo",
-            "type": "Rock",
-            "src": "/images/monsters/cement.png"
-        },
-        {
-            "name": "Lament Ngo",
-            "type": "Paper",
-            "src": "/images/monsters/lament.png"
-        },
-        {
-            "name": "Chuck Dynasty",
-            "type": "Rock",
-            "src": "/images/monsters/chuck_dynasty.png"
-        },
-        {
-            "name": "Gibson Googleburts",
-            "type": "Rock",
-            "src": "/images/monsters/gibson.png"
-        },{
-            "name": "John Campbell",
-            "type": "Rock",
-            "src": "/images/monsters/john.png"
-        },
-        {
-            "name": "Mr. Oui",
-            "type": "Paper",
-            "src": "/images/monsters/mr_oui.gif"
-        },
-        {
-            "name": "Sad Joey",
-            "type": "Scissor",
-            "src": "/images/monsters/sad_joey.png"
-        },
-        {
-            "name": "Tom",
-            "type": "Paper",
-            "src": "/images/monsters/tom.png"
-        }];
-
-        let monster = monsters[Math.floor(Math.random() * monsters.length)];
-
-        $('#monster').css('background-image', `url(${monster.src})`);
-        $('#monstername').text(monster.name);
-        $('#type').text(monster.type + ' Type');
-
-        if (monster.type === 'Paper') {
-            $('#typeicon').css('background-image', 'url(/images/typeicons/paper.png)');
-        } else if (monster.type === 'Scissor') {
-            $('#typeicon').css('background-image', 'url(/images/typeicons/scissors.png)');
-        } else if (monster.type === 'Rock') {
-            $('#typeicon').css('background-image', 'url(/images/typeicons/rock.png)');
-        } else {
-            console.log('We did an oopsies');
+        let atk = currUser.atk;
+        let cc = currUser.critchance;
+        let cd = currUser.critdamage;
+        if(Math.random()>cc)
+            atk*=cd;
+        currHP-=atk;
+        currHP = (Math.round(currHP * 100) / 100).toFixed(2);
+        $('#curhealth').text(currHP);
+        $('#healthvar').css("width", (currHP/monster.hp)*100 + '%');
+        if(currHP<=0){
+            currUser.exp+=monster.expdrop;
+            //drop items
+            spawnMonster();
         }
-
-        console.log('ouch');
     });
     
     $('#items').on('click', '.itemrow', function(){
@@ -159,24 +115,7 @@ $(document).ready(function(){
 
 	$('#searchbutton').click(function () {
         if($('#searchbar').val() != ''){
-            let uName = $('#searchbar').val();
-            $.get('/getUser',{uName:uName}, function(result){
-                if(result.uName = uName)
-                {
-                    $('#searchresult').removeClass('hidden');
-                    $('#searchplayername').text(result.uName);
-                    $('#searchlvlval').text(result.level);
-                    $('#searchadval').text(result.atk);
-                    $('#searchasval').text(result.aspeed);
-                    $('#searchccval').text(result.critchance);
-                    $('#searchcdval').text(result.critdamage);
-                    $('#searchbar').css("background-image","url('images/textbar.png')");
-                    $('#searcherror').text("");
-                }
-            })
-            
-
-
+           displaySearch($('#searchbar').val());
         }
         else
         {
@@ -189,61 +128,12 @@ $(document).ready(function(){
     
     $('#leaderboardoption').click(function(){
         $.get('/getLeaders',{},function(result){
-            $('#rank1 .leaderlvlval').text(result[0].level);
-            $('#rank1 .leaderunval').text(result[0].uName);
-
-            $('#rank2 .leaderlvlval').text(result[1].level);
-            $('#rank2 .leaderunval').text(result[1].uName);
-
-            $('#rank3 .leaderlvlval').text(result[2].level);
-            $('#rank3 .leaderunval').text(result[2].uName);
-
-            $('#rank4 .leaderlvlval').text(result[3].level);
-            $('#rank4 .leaderunval').text(result[3].uName);
-
-            $('#rank5 .leaderlvlval').text(result[4].level);
-            $('#rank5 .leaderunval').text(result[4].uName);
-
-            $('#rank6 .leaderlvlval').text(result[5].level);
-            $('#rank6 .leaderunval').text(result[5].uName);
-
-            $('#rank7 .leaderlvlval').text(result[6].level);
-            $('#rank7 .leaderunval').text(result[6].uName);
-            
-            $('#rank8 .leaderlvlval').text(result[7].level);
-            $('#rank8 .leaderunval').text(result[7].uName);
-
-            $('#rank9 .leaderlvlval').text(result[8].level);
-            $('#rank9 .leaderunval').text(result[8].uName);
-
-            $('#rank10 .leaderlvlval').text(result[9].level);
-            $('#rank10 .leaderunval').text(result[9].uName);  
-        })
-    })
-
-    $('.leaderboard').click(function () {
-        $('.selected').removeClass('selected');
-        $('#searchoption').addClass('selected');
-        $('#leaderboardmenu').addClass('hidden');
-        $('#searchmenu').removeClass('hidden');
-
-        let uName = $(this).find('.leaderunval').text();
-        $.get('/getUser',{uName:uName}, function(result){
-            if(result.uName = uName)
-            {
-                $('#searchresult').removeClass('hidden');
-                $('#searchplayername').text(result.uName);
-                $('#searchlvlval').text(result.level);
-                $('#searchadval').text(result.atk);
-                $('#searchasval').text(result.aspeed);
-                $('#searchccval').text(result.critchance);
-                $('#searchcdval').text(result.critdamage);
-                $('#searchbar').css("background-image","url('images/textbar.png')");
-                $('#searcherror').text("");
+            let i = 0;
+            for(i;i<10;i++){
+                $('#rank'+(i+1)+' .leaderlvlval').text(result[i].level);
+                $('#rank'+(i+1)+' .leaderunval').text(result[i].uName);
             }
-        })
-        //$('#searchplayername').text($(this).find('.username').text());
-        //$('#searchbar').val($(this).find('.username').text())
+        });
     });
 
     $('#verifypassbutton').click(function(){
@@ -308,4 +198,59 @@ $(document).ready(function(){
         $('#editpass').removeClass('hidden')
     });
 
+
+    //FUNCTIONS
+
+    function displaySearch(uName){
+        $.get('/getUser',{uName:uName}, function(result){
+            if(result.uName = uName)
+            {
+                $('#searchresult').removeClass('hidden');
+                $('#searchplayername').text(result.uName);
+                $('#searchlvlval').text(result.level);
+                $('#searchadval').text(result.atk);
+                $('#searchasval').text(result.aspeed);
+                $('#searchccval').text(result.critchance);
+                $('#searchcdval').text(result.critdamage);
+                $('#searchbar').css("background-image","url('images/textbar.png')");
+                $('#searcherror').text("");
+            }
+        })
+    }
+    
+    function spawnMonster(){
+        monster = monsters[Math.floor(Math.random() * monsters.length)];
+
+        $('#monster').css('background-image', `url(${monster.src})`);
+        $('#monstername').text(monster.name);
+        $('#type').text(monster.type + ' Type');
+        $('#curhealth').text(monster.hp);
+        $('#maxhealth').text(monster.hp);
+        currHP = monster.hp;
+        $('#healthvar').css("width", (currHP/monster.hp)*100 + '%');
+
+        if (monster.type === 'Paper') {
+            $('#typeicon').css('background-image', 'url(/images/typeicons/paper.png)');
+        } else if (monster.type === 'Scissor') {
+            $('#typeicon').css('background-image', 'url(/images/typeicons/scissors.png)');
+        } else if (monster.type === 'Rock') {
+            $('#typeicon').css('background-image', 'url(/images/typeicons/rock.png)');
+        } else {
+            console.log('We did an oopsies');
+        }
+        console.log('ouch');
+    }
+
+    function passiveDamage(){
+        currHP-=currUser.atk;
+        currHP = (Math.round(currHP * 100) / 100).toFixed(2);
+        $('#curhealth').text(currHP);
+        $('#healthvar').css("width", (currHP/monster.hp)*100 + '%');
+        if(currHP<=0){
+            currUser.exp+=monster.expdrop;
+            //drop items
+            spawnMonster();
+        }
+    }
+    
 });

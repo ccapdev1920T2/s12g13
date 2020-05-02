@@ -11,5 +11,6 @@ router.post('/', controller.postLogin)
 router.get('/main', controller.getMain);
 router.get('/getUser',controller.getUser);
 router.get('/getLeaders',controller.getLeaders);
+router.get('/getMonsters',controller.getMonsters);
 
 module.exports = router;
