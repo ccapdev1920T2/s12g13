@@ -2,7 +2,6 @@
 const db = require('../models/db.js');
 const Player = require('../models/PlayerModel.js');
 const Enemy = require('../models/EnemyModel.js');
-const Inventory = require('../models/InventoryModel.js');
 const Weapon = require('../models/WeaponModel.js');
 const Consumable = require('../models/ConsumableModel.js');
 

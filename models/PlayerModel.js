@@ -51,7 +51,17 @@ var PlayerSchema = new mongoose.Schema({
     },
     equippedWeapon: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'
-    }
+    },
+    
+    weapons: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Weapon'
+    }],
+
+    consumables: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Consumable'
+    }]
 
 });
 
