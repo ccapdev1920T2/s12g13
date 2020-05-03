@@ -19,7 +19,7 @@ $(document).ready(function(){
         $('#critchance .value').text(currUser.critchance);
         $('#critdamage .value').text(currUser.critdamage);
         $('#attackspeed .value').text(currUser.aspeed);
-        setInterval(passiveDamage, 1000/currUser.aspeed);
+        setInterval(function() {damage(currUser.atk)}, 1000/currUser.aspeed);
     })
     
     
@@ -67,19 +67,9 @@ $(document).ready(function(){
         let oofCopy = oof.cloneNode();
         oofCopy.play();
         let atk = currUser.atk;
-        let cc = currUser.critchance;
-        let cd = currUser.critdamage;
-        if(Math.random()>cc)
-            atk*=cd;
-        currHP-=atk;
-        currHP = (Math.round(currHP * 100) / 100).toFixed(2);
-        $('#curhealth').text(currHP);
-        $('#healthvar').css("width", (currHP/monster.hp)*100 + '%');
-        if(currHP<=0){
-            currUser.exp+=monster.expdrop;
-            //drop items
-            spawnMonster();
-        }
+        if(Math.random()>currUser.critchance)
+            atk*=currUser.critdamage;
+        damage(atk);
     });
     
     $('#items').on('click', '.itemrow', function(){
@@ -135,6 +125,14 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.leaderboard').click(function(){
+        $('#leaderboardoption').removeClass('selected');
+        $('#searchoption').addClass('selected');
+        $('#leaderboardmenu').addClass('hidden');
+        $("#searchmenu").removeClass('hidden');
+        displaySearch($(this).find('.leaderunval').text());
+    })
 
     $('#verifypassbutton').click(function(){
         $('#verifypass').addClass('hidden');
@@ -241,8 +239,8 @@ $(document).ready(function(){
         console.log('ouch');
     }
 
-    function passiveDamage(){
-        currHP-=currUser.atk;
+    function damage(dmg){
+        currHP-=dmg;
         currHP = (Math.round(currHP * 100) / 100).toFixed(2);
         $('#curhealth').text(currHP);
         $('#healthvar').css("width", (currHP/monster.hp)*100 + '%');
