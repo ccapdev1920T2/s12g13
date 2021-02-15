@@ -7,20 +7,26 @@ var WeaponSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-   
     type: {
         type: String,
-        enum: ['R','P','S'],
+        enum: ['Rock','Paper','Scissors'],
         required: true
     },
     damage: {
         type: Number,
         min: 0,
-        default: 1
+        default: 10,
+        required: true
+    },
+    rarity: {
+        type: String,
+        enum: ['Common', 'Uncommon', 'Rare', 'Epic'],
+        required: true
+    },
+    sheetid: {
+        type: String,
+        default: null
     }
-   
-
-
 });
 
 

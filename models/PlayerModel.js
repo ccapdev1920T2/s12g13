@@ -8,21 +8,23 @@ var PlayerSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-   
     pw: {
         type: String,
         required: true
     },
-
     email: {
         type: String,
         required: true
     },
-
-    level:{
+    level: {
         type: Number,
         min: 1,
         default: 1
+    },
+    spoints: {
+        type: Number,
+        min: 0,
+        default: 0
     },
     exp: {
         type: Number,
@@ -49,20 +51,38 @@ var PlayerSchema = new mongoose.Schema({
         min: 0.1,
         default: 0.1
     },
-    equippedWeapon: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'
+    weaponprof: {
+        type: Number,
+        min: 1,
+        default: 1
     },
-    
+    equippedWeapon: {
+        type: String,
+        ref: 'Weapon',
+        default: null
+    },
     weapons: [{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Weapon'
+        type: String, 
+        ref: 'Weapon',
+        default: null
     }],
-
     consumables: [{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Consumable'
-    }]
-
+        type: String, 
+        ref: 'Consumable',
+        default: null
+    }],
+    verified: {
+        type: Boolean,
+        default: false
+    },
+    lastLogin: {
+        type: Date,
+        default: null
+    },
+    materials: {
+        type: Number,
+        default: 0
+    }
 });
 
 

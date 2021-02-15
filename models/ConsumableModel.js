@@ -7,7 +7,6 @@ var ConsumableSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-   
     effect: {
         type: String,
         enum: ['Adamage', 'Aspeed', 'Cchance','Cdamage'],
@@ -16,10 +15,11 @@ var ConsumableSchema = new mongoose.Schema({
     value: {
         type: Number,
         default: 2
+    },
+    sheetid: {
+        type: String,
+        default: null
     }
-   
-
-
 });
 
 

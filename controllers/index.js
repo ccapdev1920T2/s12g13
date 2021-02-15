@@ -1,54 +1,23 @@
-// import db and schema modules
-const db = require('../models/db.js');
-const Player = require('../models/PlayerModel.js');
-const Enemy = require('../models/EnemyModel.js');
-const Weapon = require('../models/WeaponModel.js');
-const Consumable = require('../models/ConsumableModel.js');
-
-
-
 const controller = {
     getIndex: function (req, res, next) {
         res.render('index');
     },
-    postRegister: function (req, res, next) {
-        res.render('confirmation', {
-            "header": "Successfully Registered!",
-            "message": "A confirmation email has been sent to your email address!"
-        });
-    },
-    postForgot: function (req, res, next) {
-        res.render('confirmation', {
-            "header": "Email Sent!",
-            "message": "A recovery email has been sent to your email address!"
-        });
-    },
-    postLogin: function (req, res, next) {
-        res.redirect('/main');
-    },
     getMain: function (req, res, next) {
         res.render('main');
     },
-
-    getUser: function (req, res){
-        let uName = req.query.uName;
-        db.findOne(Player, {uName: uName}, {}, function (result) {
-            res.send(result);
-        })
-    },
-
-    getLeaders: function (req, res){
-        db.findMany(Player,{},{},{sort:{level:-1}, limit: 10}, function(result) {
-            res.send(result);
-        })
-    },
-
-    getMonsters: function(req, res){
-        db.findMany(Enemy,{},{},{},function(result){
-            res.send(result);
-        })
-    }
-
+    getMonsters: require('./index/getMonsters'),
+    getUser: require('./index/getUser'),
+    getLeaders: require('./index/getLeaders'),
+    postRegister: require('./index/postRegister'),
+    postForgot: require('./index/postForgot'),
+    getConfirm: require('./index/getConfirm'),
+    getForgot: require('./index/getForgot'),
+    postLogin: require('./index/postLogin'),
+    getLogout: require('./index/getLogout'),
+    postEdit: require('./index/postEdit'),
+    postSave: require('./index/postSave'),
+    getWeapons: require('./index/getWeapons'),
+    getConsumables: require('./index/getConsumables'),
 };
 
 module.exports = controller;

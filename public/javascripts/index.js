@@ -121,7 +121,7 @@ $(document).ready(function(){
     });
 
     $('#forgot').on('input propertychange paste', 'input', function () {
-        if ($(this).val() === '' || !(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($(this).val()))) {
+        if ($(this).val() === '') {
             $(this).attr('data-error', 'true')
             $('#forgotsubmit').prop('disabled', true);
         } else {

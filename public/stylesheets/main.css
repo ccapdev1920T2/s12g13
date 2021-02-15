@@ -3,17 +3,17 @@
     src: url('/fonts/Sketchalot.ttf');
 }
 
-input[type="text"],[type="password"]{
+input[type="text"],[type="password"] {
 	line-height: normal;
 	background-image: url('/images/textbar.png');
 	background-position: center;
 	border: none;
 	background-color: transparent;
 	background-repeat: no-repeat;
-	padding: 10px 45px 10px 15px;
+	padding: 2% 7% 2% 7%;
 }
 
-span{
+span {
 	line-height: normal;
 }
 
@@ -56,12 +56,23 @@ h3 {
     font-size: 10px;
 }
 
-#typeicon, .itemclass{
+#typeicon, .itemclass {
     display: inline-block;
-    background-image: url('/images/typeicons/paper.png');
     background-size: contain;
     height: 30px;
     width: 30px;
+}
+
+.Rock {
+    background-image: url('/images/typeicons/rock.png');
+}
+
+.Paper {
+    background-image: url('/images/typeicons/paper.png');
+}
+
+.Scissors {
+    background-image: url('/images/typeicons/scissors.png');
 }
 
 .flex-col {
@@ -119,7 +130,8 @@ h3 {
     width: 100%;
     max-width: 200px;
 }
-#healthbar{
+
+#healthbar {
 	position: relative;
     display: inline-block;
 
@@ -200,7 +212,7 @@ h3 {
     display: none;
 }
 
-#playerinfo *{
+#playerinfo * {
     margin-bottom: 15px;
 }
 
@@ -241,6 +253,7 @@ h3 {
 	min-height: 49px;
 	min-width: 222px;
 }
+
 .shortbutton {
 	line-height:normal;
 	border: none;
@@ -253,143 +266,243 @@ h3 {
 	min-width: 111px;
 }
 
-#searchresult{
+#searchresult {
 	padding-top:20px;
 }
 
-#searchstatsinfo{
+#searchstatsinfo {
 	line-height:normal;
 }
 
 
 /* Equipment */
-.inv-contain{
+.inv-contain {
     overflow-x: scroll;
     width: 256px;
     align-self: flex-end;
 }
 
-.inv-items{
+.inv-items {
     width: 256px;
 }
 
-.inv-square{
+.inv-square {
     border: 2px solid black;
     width: 64px;
     height: 64px;
 }
 
-#items{
+#equippeditem {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    height: 10%;
+}
+
+#items, #consumables {
     display: flex;
     flex-direction: column;
     overflow-x: hidden; 
     overflow-x: auto; 
-  }
-  .itemrow {
+    height: 30%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.itemrow {
     display: flex;
-    padding:10px;
-    margin-left: 10px;
+    padding: 10px;
     justify-content: space-between;
     height: 50px;
-  }
+    width: 90%;
+    margin-left: 5%;
+}
 
-  .itemsprite{
+.itemsprite {
     height: 30px;
     width: 30px;
     background-repeat: no-repeat;
     background-size: contain;
-  
-  }
+}
 
-  #pball{
-    background-image: url('/images/items/pokeball.png');
-  }
-
-  #pgun{
-    background-image: url('/images/items/portalgun.png');
-  }
-
-  #dball{
-    background-image: url('/images/items/dragonballs.png');
-  }
-
-  #sm{
-    background-image: url('/images/items/sailormoon.png');
-  }
-
-  #ms{
-    background-image: url('/images/items/mastersword.png');
-  }
-
-
-  
 #terrain {
     cursor: pointer;
 }
 
-.edit{
+.edit {
     padding-left: 20px;
 }
 
-.editchoice{
+.editchoice {
     margin-bottom: 20px;
 }
 
 /* Spritesheet*/
-#rock0{
+.itemspritesheet {
+    background-size: 240px 90px;
     background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
+}
+
+.consumablespritesheet {
+    background-size: 120px 120px;
+    background-image: url('/images/items/consumablespritesheet.png');
+}
+
+#rock0 {
     background-position: 0px 0px;
-    
 }
-#rock1{
-    background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
-    background-position: -64px 0px;
+
+#rock1 {
+    background-position: -30px 0px;
 }
-#rock2{
-    background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
-    background-position: -128px 0px;
+
+#rock2 {
+    background-position: -60px 0px;
 }
-#rock3{
-    background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
-    background-position: -192px 0px;
+
+#rock3 {
+    background-position: -90px 0px;
 }
-#rock4{
-    background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
-    background-position: -256px 0px;
+
+#rock4 {
+    background-position: -120px 0px;
 }
-#rock5{
-    background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
-    background-position: -320px 0px;
+
+#rock5 {
+    background-position: -150px 0px;
 }
-#rock6{
-    background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
-    background-position: -384px 0px;
+
+#rock6 {
+    background-position: -180px 0px;
 }
-#rock7{
-    background-image: url('/images/items/itemspritesheet.png');
-    background-size: 512px 192px;
-    width: 64px;
-    height: 64px;
-    background-position: -448px 0px;
+
+#rock7 {
+    background-position: -210px 0px;
+}
+
+#paper0 {
+    background-position: 0px -30px;
+}
+
+#paper1 {
+    background-position: -30px -30px;
+}
+
+#paper2 {
+    background-position: -60px -30px;
+}
+
+#paper3 {
+    background-position: -90px -30px;
+}
+
+#paper4 {
+    background-position: -120px -30px;
+}
+
+#paper5 {
+    background-position: -150px -30px;
+}
+
+#paper6 {
+    background-position: -180px -30px;
+}
+
+#paper7 {
+    background-position: -210px -30px;
+}
+
+#scissors0 {
+    background-position: 0px -60px;
+}
+
+#scissors1 {
+    background-position: -30px -60px;
+}
+
+#scissors2 {
+    background-position: -60px -60px;
+}
+
+#scissors3 {
+    background-position: -90px -60px;
+}
+
+#scissors4 {
+    background-position: -120px -60px;
+}
+
+#scissors5 {
+    background-position: -150px -60px;
+}
+
+#scissors6 {
+    background-position: -180px -60px;
+}
+
+#scissors7 {
+    background-position: -210px -60px;
+}
+
+#damage0 {
+    background-position: 0px 0px;
+}
+
+#damage1 {
+    background-position: -30px 0px;
+}
+
+#damage2 {
+    background-position: -60px 0px;
+}
+
+#damage3 {
+    background-position: -90px 0px;
+}
+
+#luck0 {
+    background-position: -30px -30px;
+}
+
+#luck1 {
+    background-position: -30px -30px;
+}
+
+#luck2 {
+    background-position: -60px -30px;
+}
+
+#luck3 {
+    background-position: -90px -30px;
+}
+
+#brutality0 {
+    background-position: 0px -60px;
+}
+
+#brutality1 {
+    background-position: -30px -60px;
+}
+
+#brutality2 {
+    background-position: -60px -60px;
+}
+
+#brutality3 {
+    background-position: -90px -60px;
+}
+
+#speed0 {
+    background-position: 0px -90px;
+}
+
+#speed1 {
+    background-position: -30px -90px;
+}
+
+#speed2 {
+    background-position: -60px -90px;
+}
+
+#speed3 {
+    background-position: -90px -90px;
 }

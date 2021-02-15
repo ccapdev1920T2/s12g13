@@ -7,39 +7,35 @@ var EnemySchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-   
     hp: {
         type: Number,
         default: 50
     },
-
+    hplvl: {
+        type: Number,
+        default: 50
+    },
     type: {
         type: String,
-        enum: ['Rock','Paper','Scissor'],
+        enum: ['Rock','Paper','Scissors'],
         required: true
     },
-
     expdrop:{
         type: Number,
-        min: 1
+        min: 1,
+        default: 100
     },
-
     src:{
         type: String
-    },
-    
+    },  
     weapondrops: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: String, 
         ref: 'Weapon'
     }],
-
     consumabledrops: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: String, 
         ref: 'Consumable'
     }],
-
-
-
 });
 
 

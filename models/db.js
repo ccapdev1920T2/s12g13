@@ -2,139 +2,95 @@
 // import module `mongoose`
 const mongoose = require('mongoose');
 
-// import schema modules
-const Player = require('./PlayerModel.js');
-const Enemy = require('./EnemyModel.js');
-const Inventory = require('./InventoryModel.js');
-const Weapon = require('./WeaponModel.js');
-const Consumable = require('./ConsumableModel.js');
+require('dotenv').config();
 
+const url = `mongodb://${process.env.DBADDRESS}:${process.env.DBPORT}/${process.env.COLLECTION}`;
 
-
-// cctapdev is the name of the database
-const url = 'mongodb://localhost:27017/cctapdev';
-
-// additional connection options
 const options = {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useCreateIndex: true
 };
 
 // defines an object which contains necessary database functions
 const database = {
-
-    /*
-        connects to database
-    */
     connect: function () {
-        mongoose.connect(url, options, function(error) {
-            if(error) throw error;
+        mongoose.connect(url, options, function (err) {
+            if (err) console.log(err);
             console.log('Connected to: ' + url);
         });
     },
 
-    /*
-        inserts a single `doc` to the database based on the model `model`
-    */
-    insertOne: function(model, doc, callback) {
-        model.create(doc, function(error, result) {
-            if(error) return callback(false);
-            console.log('Added ' + result);
-            return callback(true);
+    insertOne: function (model, doc, callback) {
+        model.create(doc, function (err, res) {
+            if (err) console.log(err);
+            console.log("Added 1 document to " + model.collection.collectionName);
+            callback(res);
         });
     },
 
-    /*
-        inserts multiple `docs` to the database based on the model `model`
-    */
-    insertMany: function(model, docs) {
-        model.insertMany(docs, function(error, result) {
-            if(error) return callback(false);
-            console.log('Added ' + result);
-            return callback(true);
+    insertMany: function (model, docs) {
+        model.insertMany(docs, function (err, res) {
+            if (err) console.log(err);
+            console.log("Added " + res.length + " documents to " + model.collection.collectionName);
         });
     },
 
-    /*
-        searches for a single document based on the model `model`
-        filtered through the object `query`
-        limits the fields returned based on the string `projection`
-        callback function is called after the execution of findOne() function
-    */
-    findOne: function(model, query, projection, callback) {
-        model.findOne(query, projection, function(error, result) {
-            if(error) return callback(false);
-            return callback(result);
+    findOne: function (model, query, projection, callback) {
+        model.findOne(query, projection, function (err, res) {
+            if (err) console.log(err);
+            return callback(res);
         });
     },
 
-    /*
-        searches for multiple documents based on the model `model`
-        filtered through the object `query`
-        limits the fields returned based on the string `projection`
-        callback function is called after the execution of findMany() function
-    */
-    findMany: function(model, query, projection, options, callback) {
-        model.find(query, projection, options, function(error, result) {
-            if(error) return callback(false);
-            return callback(result);
+    findMany: function (model, query, projection, callback) {
+        model.find(query, projection, function (err, res) {
+            if (err) console.log(err);
+            return callback(res);
         });
     },
 
-    /*
-        updates the value defined in the object `update`
-        on a single document based on the model `model`
-        filtered by the object `filter`
-    */
-    updateOne: function(model, filter, update) {
-        model.updateOne(filter, update, function(error, result) {
-            if(error) return callback(false);
-            console.log('Document modified: ' + result.nModified);
-            return callback(true);
-        });
+    findLimitSort: function (model, query, projection, limit, sort, callback) {
+        model.find(query).limit(limit).sort(sort).exec(function (err, res) {
+            if (err) console.log(err);
+            return callback(res);
+        })
     },
 
-    /*
-        updates the value defined in the object `update`
-        on multiple documents based on the model `model`
-        filtered using the object `filter`
-    */
-    updateMany: function(model, filter, update) {
-        model.updateMany(filter, update, function(error, result) {
-            if(error) return callback(false);
-            console.log('Documents modified: ' + result.nModified);
-            return callback(true);
-        });
+    updateOne: function (model, filter, update) {
+        model.updateOne(filter, update, function (err, res) {
+            if (err) console.log(err);
+            console.log("Document modified: " + res.nModified);
+        })
     },
 
-    /*
-        deletes a single document based on the model `model`
-        filtered using the object `conditions`
-    */
-    deleteOne: function(model, conditions) {
-        model.deleteOne(conditions, function (error, result) {
-            if(error) return callback(false);
-            console.log('Document deleted: ' + result.deletedCount);
-            return callback(true);
-        });
+    updateMany: function (model, filter, update) {
+        model.updateMany(filter, update, function (err, res) {
+            if (err) console.log(err);
+            console.log("Document modified: " + res.nModified);
+        })
     },
 
-    /*
-        deletes multiple documents based on the model `model`
-        filtered using the object `conditions`
-    */
-    deleteMany: function(model, conditions) {
-        model.deleteMany(conditions, function (error, result) {
-            if(error) return callback(false);
-            console.log('Document deleted: ' + result.deletedCount);
-            return callback(true);
+    deleteOne: function (model, conditions) {
+        model.deleteOne(conditions, function (err, res) {
+            if (err) console.log(err);
+            console.log("Document deleted: " + res.deletedCount);
+        })
+    },
+
+    deleteMany: function (model, conditions) {
+        model.deleteMany(conditions, function (err, res) {
+            if (err) console.log(err);
+            console.log("Document deleted: " + res.deletedCount);
+        })
+    },
+
+    count: function (model, query, callback) {
+        model.countDocuments(query, function (err, count) {
+            if (err) console.log(err);
+            return callback(count);
         });
     }
-
 }
 
-/*
-    exports the object `database` (defined above)
-    when another script exports from this file
-*/
 module.exports = database;

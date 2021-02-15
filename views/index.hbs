@@ -1,7 +1,11 @@
 <link rel='stylesheet' href='/stylesheets/index.css' type='text/css'/>
 <script type='text/javascript' src='/javascripts/index.js'></script>
 
-<h1 id="title"><span id="yellow">CC</span><span id="blue">TAPDEV</span></h1>
+{{#if error}}
+    <h1 id="title"><span id="blue">{{error}}</span></h1>
+{{else}}
+    <h1 id="title"><span id="yellow">CC</span><span id="blue">TAPDEV</span></h1>
+{{/if}}
 
 <div class="login-reg-panel">
     <div class="login-info-box">
@@ -20,24 +24,24 @@
         <div class="login-show">
             <h2>LOGIN</h2>
             <form id="login" method="POST">
-                <input type="text" placeholder="Username" name="email" id="loguser">
+                <input type="text" placeholder="Username" name="username" {{#if loguser}}value="{{loguser}}"{{/if}} id="loguser">
                 <input type="password" placeholder="Password" name="password" id="logpass">
                 <input type="submit" value="Login" id="logsubmit">
             </form>
             <p id="forgotflag">Forgot password?</p>
             <form id="forgot" method="POST" action="/forgot">
-                <input type="text" placeholder="Email" name="email" id="forgotemail">
+                <input type="text" placeholder="Username" name="username" id="forgotuser">
                 <input type="submit" value="Send" id="forgotsubmit">
             </form>
         </div>
         <div class="register-show">
             <h2>REGISTER</h2>
             <form id="register" method="POST" action="/register">
-                <input type="text" placeholder="Email" name="email" id="regemail">
-                <input type="text" placeholder="Username" name="username" id="reguser">
+                <input type="text" placeholder="Email" name="email" id="regemail" {{#if regemail}}value="{{regemail}}"{{/if}}>
+                <input type="text" placeholder="Username" name="username" id="reguser" {{#if reguser}}value="{{reguser}}"{{/if}}>
                 <input type="password" placeholder="Password" name="password"  id="regpass">
                 <input type="password" placeholder="Confirm Password" name="cpassword" id="regcpass">
-                <input type="submit" value="Register"  id="regsubmit">
+                <input type="submit" value="Register" id="regsubmit">
             </form>
         </div>
     </div>
