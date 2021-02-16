@@ -21,6 +21,12 @@
 1. Fill up the necessary information
 2. You can only log in once your account is verified
 
+## Editing user information
+1. User has to be logged in to change information
+2. Fill in desired fields to change and current password
+3. User will be logged out upon changing information
+4. If the user changes email address they will have to verify it again
+
 ## Playing the game
 - Click the monsters to deal damage
 - Killing monsters awards experience and materials
