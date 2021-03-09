@@ -4,7 +4,7 @@
 1. Install dependencies using `npm i`
 2. Have MongoDB
 3. Run the program using `npm run start` or `npm run dev`
-4. Access through `http://localhost:8000`
+4. Access through `http://localhost:3000`
 
 ## Signing up for an account
 1. Fill up the necessary information

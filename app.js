@@ -21,7 +21,7 @@ addData();
 
 const app = express();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 console.log(`Started listening at port ${PORT}`);
 app.listen(PORT);
