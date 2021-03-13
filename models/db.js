@@ -9,7 +9,7 @@ let url;
 if (process.env.ENV === 'development') {
     url = `mongodb://${process.env.DBADDRESS}:${process.env.DBPORT}/${process.env.COLLECTION}`;
 } else if (process.env.ENV === 'production') {
-    url = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@${process.env.COLLECTION}.zykly.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+    url = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@${process.env.DBCLUSTER}.zykly.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 }
 
 const options = {
