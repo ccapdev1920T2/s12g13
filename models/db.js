@@ -4,7 +4,13 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-const url = `mongodb://${process.env.DBADDRESS}:${process.env.DBPORT}/${process.env.COLLECTION}`;
+let url;
+
+if (process.env.ENV === 'development') {
+    url = `mongodb://${process.env.DBADDRESS}:${process.env.DBPORT}/${process.env.COLLECTION}`;
+} else if (process.env.ENV === 'production') {
+    url = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@${process.env.COLLECTION}.zykly.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+}
 
 const options = {
     useNewUrlParser: true,
@@ -15,6 +21,7 @@ const options = {
 // defines an object which contains necessary database functions
 const database = {
     connect: function () {
+        console.log('Connecting to: ' + url);
         mongoose.connect(url, options, function (err) {
             if (err) console.log(err);
             console.log('Connected to: ' + url);
