@@ -15,6 +15,7 @@ router.get('/getConsumables', checkNotAuthenticated, controller.getConsumables);
 router.get('/logout', controller.getLogout);
 router.get('/confirm/:id', controller.getConfirm);
 router.get('/forgot/:id', controller.getForgot);
+router.get('/about', controller.getAbout);
 
 router.post('/register', controller.postRegister);
 router.post('/forgot', controller.postForgot);

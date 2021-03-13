@@ -1,9 +1,12 @@
 const controller = {
-    getIndex: function (req, res, next) {
+    getIndex: function (_req, res, _next) {
         res.render('index');
     },
-    getMain: function (req, res, next) {
+    getMain: function (_req, res, _next) {
         res.render('main');
+    },
+    getAbout: function (_req, res, _next) {
+        res.render('about');
     },
     getMonsters: require('./index/getMonsters'),
     getUser: require('./index/getUser'),

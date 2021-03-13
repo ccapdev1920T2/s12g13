@@ -152,3 +152,9 @@ input[type="submit"]:disabled {
 #yellow {
     color: #ffcb05;
 }
+
+.bottom-right {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+}
